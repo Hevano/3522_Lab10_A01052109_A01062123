@@ -3,10 +3,11 @@ This module contains the data structures and code to query the
 Open Notify API and process the times that the ISS will be directly
 overhead a city.
 """
-import requests
-import pandas
-import json
 import datetime
+import json
+
+import pandas
+import requests
 
 
 def jprint(obj):
@@ -125,7 +126,7 @@ class CityOverheadTimes:
             times.append(str(iss_pass))
         times = '\n'.join(times)
         return f"The ISS will pass over {self.city.city_name} " \
-            f"{len(self.passes)} times. The times are: \n {times}"
+               f"{len(self.passes)} times. The times are: \n {times}"
 
 
 class ISSDataRequest:
@@ -141,11 +142,10 @@ class ISSDataRequest:
 
     @classmethod
     def get_overhead_pass(cls, city: City) -> CityOverheadTimes:
-        pass
         # Write request code here!
         p = {
-            "lat":city.lat,
-            "lon":city.lng
+            "lat": city.lat,
+            "lon": city.lng
         }
         response = requests.get(cls.OPEN_NOTIFY_OVERHEAD_PASS_URL, params=p)
         times = response.json()['response']
@@ -155,9 +155,3 @@ class ISSDataRequest:
         # DEBUG:
         # print(response)
         # jprint(data)
-
-
-
-
-
-
