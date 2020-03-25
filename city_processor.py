@@ -157,8 +157,7 @@ class ISSDataRequest:
         # jprint(data)
 
 
-db = CityDatabase("city_locations_test.xlsx")
-ISSDataRequest.get_overhead_pass(db.city_db[0])
+
 
 
 
