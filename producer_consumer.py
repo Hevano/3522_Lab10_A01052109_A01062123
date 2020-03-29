@@ -15,11 +15,16 @@ class CityOverHeadTimeQueue:
     def put(self, overhead_time: CityOverheadTimes) -> None:
         with self.access_queue_lock:
             self.data_queue.append(overhead_time)
+            print(f"Element added to queue. Queue has {len(self.data_queue)} items.")
 
     def get(self) -> CityOverheadTimes:
         with self.access_queue_lock:
+            if len(self.data_queue) <= 0:
+                print("Queue is empty: sleeping")
+                time.sleep(1)
             t = self.data_queue[0]
             del self.data_queue[0]
+            print(f"Element removed to queue. Queue has {len(self.data_queue)} items.")
             return t
 
     def __len__(self) -> int:
