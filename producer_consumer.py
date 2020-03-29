@@ -24,7 +24,7 @@ class CityOverHeadTimeQueue:
                 time.sleep(1)
             t = self.data_queue[0]
             del self.data_queue[0]
-            print(f"Element removed to queue. Queue has {len(self.data_queue)} items.")
+            print(f"Element removed from queue. Queue has {len(self.data_queue)} items.")
             return t
 
     def __len__(self) -> int:
