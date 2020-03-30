@@ -22,10 +22,11 @@ class CityOverHeadTimeQueue:
             if len(self.data_queue) <= 0:
                 print("Queue is empty: sleeping")
                 time.sleep(1)
-            t = self.data_queue[0]
-            del self.data_queue[0]
-            print(f"Element removed from queue. Queue has {len(self.data_queue)} items.")
-            return t
+            else:
+                t = self.data_queue[0]
+                del self.data_queue[0]
+                print(f"Element removed from queue. Queue has {len(self.data_queue)} items.")
+                return t
 
     def __len__(self) -> int:
         return len(self.data_queue)
@@ -65,8 +66,8 @@ class ConsumerThread(Thread):
 db = CityDatabase("city_locations.xlsx")
 
 q = CityOverHeadTimeQueue()
-p_thread = ProducerThread(db.city_db[0:50], q)
-p_thread2 = ProducerThread(db.city_db[51:101], q)
+p_thread = ProducerThread(db.city_db[0:51], q)
+p_thread2 = ProducerThread(db.city_db[51:102], q)
 p_thread3 = ProducerThread(db.city_db[102:152], q)
 
 c_thread = ConsumerThread(p_thread.queue)

@@ -148,10 +148,9 @@ class ISSDataRequest:
             "lon": city.lng
         }
         response = requests.get(cls.OPEN_NOTIFY_OVERHEAD_PASS_URL, params=p)
-        times = response.json()['response']
-
-        return CityOverheadTimes(city, *times)
-
+        if response.status_code == 200:
+            times = response.json()['response']
+            return CityOverheadTimes(city, *times)
         # DEBUG:
         # print(response)
         # jprint(data)
